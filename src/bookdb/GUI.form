@@ -31,7 +31,7 @@
     <Component class="javax.swing.JLabel" name="GT">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\Linh Tinh\XD\Web 1280 &#x2013; 2.jpg"/>
+          <Image iconType="3" name="/img/Web 1280 &#x2013; 2.jpg"/>
         </Property>
       </Properties>
       <Constraints>
@@ -120,7 +120,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Linh Tinh\HQTCSDL\search (1).png"/>
+              <Image iconType="3" name="/img/search (1).png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -205,7 +205,7 @@
           <Font name="Tahoma" size="24" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\Linh Tinh\XD\Web 1280 &#x2013; 1.jpg"/>
+          <Image iconType="3" name="/img/Web 1280 &#x2013; 1.jpg"/>
         </Property>
         <Property name="alignmentY" type="float" value="0.0"/>
       </Properties>

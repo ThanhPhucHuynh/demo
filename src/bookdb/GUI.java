@@ -84,7 +84,7 @@ public class GUI extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1220, 820));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        GT.setIcon(new javax.swing.ImageIcon("D:\\Linh Tinh\\XD\\Web 1280 – 2.jpg")); // NOI18N
+        GT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Web 1280 – 2.jpg"))); // NOI18N
         getContentPane().add(GT, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 1030, 800));
 
         btn_BOOK.setBackground(new java.awt.Color(51, 102, 255));
@@ -128,7 +128,7 @@ public class GUI extends javax.swing.JFrame {
         });
         search.add(text_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 190, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\Linh Tinh\\HQTCSDL\\search (1).png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search (1).png"))); // NOI18N
         search.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 50, 70));
 
         getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 200, 390, 60));
@@ -158,7 +158,7 @@ public class GUI extends javax.swing.JFrame {
 
         backgound.setBackground(new java.awt.Color(255, 255, 255));
         backgound.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        backgound.setIcon(new javax.swing.ImageIcon("D:\\Linh Tinh\\XD\\Web 1280 – 1.jpg")); // NOI18N
+        backgound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Web 1280 – 1.jpg"))); // NOI18N
         backgound.setAlignmentY(0.0F);
         getContentPane().add(backgound, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, 800));
 

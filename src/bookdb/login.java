@@ -92,13 +92,13 @@ public class login extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(300, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("D:\\Linh Tinh\\HQTCSDL\\key.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/key.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, 30));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\Linh Tinh\\HQTCSDL\\avatar (1).png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/avatar (1).png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\Linh Tinh\\XD\\Web 1920 – 1.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Web 1920 – 1.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 501));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
