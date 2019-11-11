@@ -55,6 +55,11 @@ public class login extends javax.swing.JFrame {
         account.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         account.setToolTipText("");
         account.setBorder(null);
+        account.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accountActionPerformed(evt);
+            }
+        });
         getContentPane().add(account, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 160, 20));
 
         password.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -103,7 +108,8 @@ public class login extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        pack();
+        setSize(new java.awt.Dimension(317, 543));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
@@ -133,6 +139,10 @@ public class login extends javax.swing.JFrame {
             password.setText("");
         }
     }//GEN-LAST:event_btn_loginMouseClicked
+
+    private void accountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_accountActionPerformed
 
     /**
      * @param args the command line arguments

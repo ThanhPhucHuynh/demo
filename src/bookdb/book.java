@@ -13,8 +13,9 @@ public class book {
     private String ID;
     private String Name;
     private String Author;
+    private String category;
     private int  Sl;
-    private int CL;
+    private int price;
     
     
     public book(){
@@ -22,11 +23,14 @@ public class book {
         this.Name = null;
         this.Author = null;
         this.Sl = -1;
-        this.CL = -1;
+        this.price = -1;
     }
     
     public String getID(){
         return this.ID;
+    }
+     public String getCategory(){
+        return this.category;
     }
     public String getName(){
         return this.Name;
@@ -37,12 +41,15 @@ public class book {
     public int getSL(){
         return this.Sl;
     }
-    public int getCL(){
-        return this.CL;
+    public int getPrice(){
+        return this.price;
     }
     
     public void setID(String ID){
         this.ID = ID;
+    }
+     public void setCategory(String TL){
+        this.category = TL;
     }
     public void setName(String Name){
         this.Name = Name;
@@ -53,8 +60,8 @@ public class book {
     public void setSL(int sl){
         this.Sl =sl;
     }
-    public void setCL(int cl){
-        this.CL =cl;
+    public void setPrice(int cl){
+        this.price =cl;
     }
     
 }
