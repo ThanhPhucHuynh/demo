@@ -40,8 +40,8 @@ public class GUI extends javax.swing.JFrame {
            // BOOK1.setVisible(false);
            table_listBook.setVisible(false);
            search.setVisible(false);
-            hello.setText("Wellcome "+name);
-            
+           hello.setText("Wellcome "+name);
+            btn_sellClick(false);
             DefaultTableModel model = (DefaultTableModel) tb1.getModel();
             book[] books = cn.dvsv();
          //   TimeUnit.SECONDS.sleep(1);
@@ -62,8 +62,8 @@ public class GUI extends javax.swing.JFrame {
       //  } catch (InterruptedException ex) {
         //    Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
        // }
-            tb1.setComponentPopupMenu(pop);
-        sort();
+            //tb1.setComponentPopupMenu(pop);
+                  sort();
         
     }
     public GUI(String name,int u) {
@@ -74,19 +74,18 @@ public class GUI extends javax.swing.JFrame {
        // setBackground(new Color(0,0,0,0));
      //   viewsetting.setEnable(true);
            // BOOK1.setVisible(false);
-           table_listBook.setVisible(false);
-           search.setVisible(false);
-            hello.setText("Wellcome "+name);
-            
+           
+           hello.setText("Wellcome "+name);
+           
+           btn_sellClick(false);
             DefaultTableModel model = (DefaultTableModel) tb1.getModel();
             book[] books = cn.dvsv();
-         //   TimeUnit.SECONDS.sleep(1);
+        
             System.out.println("lenght: "+books.length);
-            //book[]  = cn.dvsv();
+            
             int i=0;
             
             while(i!=(books.length)){
-             //   System.out.println(books[i].getAuthor());
                 model.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getAuthor(),books[i].getCategory(),books[i].getPrice(),books[i].getSL()});
                 i++;
             }
@@ -94,13 +93,10 @@ public class GUI extends javax.swing.JFrame {
             
             sort();
             
-            cn.checkAdmin("B1706515", "123");
-      //  } catch (InterruptedException ex) {
-        //    Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-       // }
-            tb1.setComponentPopupMenu(pop);
+        cn.checkAdmin("B1706515", "123");
+    
         
-            btn_BOOK.setBackground(Color.white);
+        btn_BOOK.setBackground(Color.white);
         btn_BOOK.setForeground(Color.BLUE);
         btn_BOOK.setBorder(BorderFactory.createEmptyBorder());
         btn_BOOK.setBorderPainted(false);
@@ -125,17 +121,24 @@ public class GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         pop = new javax.swing.JPopupMenu();
+        grouprad = new javax.swing.ButtonGroup();
         GT = new javax.swing.JLabel();
+        btn_sell = new javax.swing.JButton();
         btn_BOOK = new javax.swing.JButton();
         hello = new javax.swing.JLabel();
         search = new javax.swing.JPanel();
+        table_listBook = new javax.swing.JScrollPane();
+        tb1 = new javax.swing.JTable();
         text_search = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         add_book = new javax.swing.JLabel();
         btn_del = new javax.swing.JButton();
-        retable = new javax.swing.JLabel();
-        table_listBook = new javax.swing.JScrollPane();
-        tb1 = new javax.swing.JTable();
+        panelSell = new javax.swing.JPanel();
+        rad_menbers = new javax.swing.JRadioButton();
+        rad_guest = new javax.swing.JRadioButton();
+        panel_menber = new javax.swing.JPanel();
+        inputID = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         backgound = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -144,6 +147,22 @@ public class GUI extends javax.swing.JFrame {
 
         GT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Web 1280 – 2.jpg"))); // NOI18N
         getContentPane().add(GT, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 1030, 800));
+
+        btn_sell.setBackground(new java.awt.Color(51, 102, 255));
+        btn_sell.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btn_sell.setForeground(new java.awt.Color(255, 255, 255));
+        btn_sell.setText("SELL");
+        btn_sell.setBorder(null);
+        btn_sell.setBorderPainted(false);
+        btn_sell.setContentAreaFilled(false);
+        btn_sell.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_sell.setDefaultCapable(false);
+        btn_sell.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_sellMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_sell, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 220, 40));
 
         btn_BOOK.setBackground(new java.awt.Color(51, 102, 255));
         btn_BOOK.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -173,6 +192,34 @@ public class GUI extends javax.swing.JFrame {
 
         search.setBackground(new java.awt.Color(255, 255, 255));
         search.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tb1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID Book", "Name", "Author", "Category", "Gia", "So Luong"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tb1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb1MouseClicked(evt);
+            }
+        });
+        table_listBook.setViewportView(tb1);
+        if (tb1.getColumnModel().getColumnCount() > 0) {
+            tb1.getColumnModel().getColumn(1).setPreferredWidth(200);
+        }
+
+        search.add(table_listBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 770, 480));
 
         text_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,43 +252,41 @@ public class GUI extends javax.swing.JFrame {
         });
         search.add(btn_del, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 80, 30));
 
-        retable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/rotate.png"))); // NOI18N
-        retable.addMouseListener(new java.awt.event.MouseAdapter() {
+        getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 830, 670));
+
+        panelSell.setBackground(new java.awt.Color(255, 255, 255));
+        panelSell.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        grouprad.add(rad_menbers);
+        rad_menbers.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rad_menbers.setText("Menbers");
+        rad_menbers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                retableMouseClicked(evt);
+                rad_menbersMouseClicked(evt);
             }
         });
-        search.add(retable, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, 30));
+        panelSell.add(rad_menbers, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 130, 40));
 
-        getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 830, 80));
-
-        tb1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID Book", "Name", "Author", "Category", "Gia", "So Luong"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        tb1.addMouseListener(new java.awt.event.MouseAdapter() {
+        grouprad.add(rad_guest);
+        rad_guest.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rad_guest.setText("Guest");
+        rad_guest.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tb1MouseClicked(evt);
+                rad_guestMouseClicked(evt);
             }
         });
-        table_listBook.setViewportView(tb1);
-        if (tb1.getColumnModel().getColumnCount() > 0) {
-            tb1.getColumnModel().getColumn(1).setPreferredWidth(200);
-        }
+        panelSell.add(rad_guest, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 130, 40));
 
-        getContentPane().add(table_listBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 770, 480));
+        panel_menber.setBackground(new java.awt.Color(255, 255, 255));
+        panel_menber.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panel_menber.add(inputID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 180, 40));
+
+        jLabel2.setText("ID member:");
+        panel_menber.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 20));
+
+        panelSell.add(panel_menber, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 260, 100));
+
+        getContentPane().add(panelSell, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 900, 650));
 
         backgound.setBackground(new java.awt.Color(255, 255, 255));
         backgound.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -256,31 +301,27 @@ public class GUI extends javax.swing.JFrame {
     private void btn_BOOKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BOOKMouseClicked
         // TODO add your handling code here:
        // btn_BOOK.setContentAreaFilled(true);
-        btn_BOOK.setBackground(Color.white);
-        btn_BOOK.setForeground(Color.BLUE);
-        btn_BOOK.setBorder(BorderFactory.createEmptyBorder());
-        btn_BOOK.setBorderPainted(false);
-        btn_BOOK.setOpaque(true);
-        table_listBook.setVisible(true);
-        GT.setVisible(false);
-        search.setVisible(true);
+        
+        BookClick(true);
     }//GEN-LAST:event_btn_BOOKMouseClicked
 
     private void helloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helloMouseClicked
         // TODO add your handling code here
         GT.setVisible(true);
-        btn_BOOK.setBackground(new java.awt.Color(51, 102, 255));
-        btn_BOOK.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btn_BOOK.setForeground(new java.awt.Color(255, 255, 255));
-        table_listBook.setVisible(false);
+        BookClick(false);
+        btn_sellClick(false);
+//        btn_BOOK.setBackground(new java.awt.Color(51, 102, 255));
+//        btn_BOOK.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+//        btn_BOOK.setForeground(new java.awt.Color(255, 255, 255));
+//        table_listBook.setVisible(false);
         //btn_BOOK.setText("BOOK");
-        btn_BOOK.setBorder(null);
-        btn_BOOK.setBorderPainted(false);
-        btn_BOOK.setContentAreaFilled(false);
+//        btn_BOOK.setBorder(null);
+//        btn_BOOK.setBorderPainted(false);
+//        btn_BOOK.setContentAreaFilled(false);
        // btn_BOOK.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btn_BOOK.setDefaultCapable(false);
-      btn_BOOK.setOpaque(false);
-      search.setVisible(false);
+//        btn_BOOK.setDefaultCapable(false);
+//        btn_BOOK.setOpaque(false);
+//        search.setVisible(false);
     }//GEN-LAST:event_helloMouseClicked
 
     private void text_searchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_text_searchKeyTyped
@@ -323,12 +364,91 @@ public class GUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_delMouseClicked
 
-    private void retableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retableMouseClicked
+    private void btn_sellMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_sellMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tb1.getModel();
-        model.fireTableDataChanged();
-    }//GEN-LAST:event_retableMouseClicked
+        btn_sellClick(true);
+    }//GEN-LAST:event_btn_sellMouseClicked
 
+    private void rad_menbersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rad_menbersMouseClicked
+        // TODO add your handling code here:
+        if(rad_menbers.isSelected()){
+            panel_menber.setVisible(true);
+        }
+        
+    }//GEN-LAST:event_rad_menbersMouseClicked
+
+    private void rad_guestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rad_guestMouseClicked
+        // TODO add your handling code here:
+        if(rad_guest.isSelected()){
+            panel_menber.setVisible(false);
+        }
+    }//GEN-LAST:event_rad_guestMouseClicked
+     public void BookClick(boolean click){
+        if(click == false){
+        //GT.setVisible(true);
+        btn_BOOK.setBackground(new java.awt.Color(51, 102, 255));
+        btn_BOOK.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btn_BOOK.setForeground(new java.awt.Color(255, 255, 255));
+        table_listBook.setVisible(false);
+        btn_BOOK.setBorder(null);
+        btn_BOOK.setBorderPainted(false);
+        btn_BOOK.setContentAreaFilled(false);
+       // btn_BOOK.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_BOOK.setDefaultCapable(false);
+        btn_BOOK.setOpaque(false);
+        //GT.setVisible(true);
+        
+        table_listBook.setVisible(false);
+        search.setVisible(false);
+        }else{
+        btn_BOOK.setBackground(Color.white);
+        btn_BOOK.setForeground(Color.BLUE);
+        btn_BOOK.setBorder(BorderFactory.createEmptyBorder());
+        btn_BOOK.setBorderPainted(false);
+        btn_BOOK.setOpaque(true);
+        GT.setVisible(false);
+        search.setVisible(true);
+        //BookClick(false);
+        search.setVisible(true);
+        //search.setVisible(true);
+        table_listBook.setVisible(true);
+        tb1.setVisible(true);
+        //GT.setVisible(false);
+        btn_sellClick(false);
+        }
+    }
+    
+    public void btn_sellClick(boolean click){
+        if(click == false){
+        //GT.setVisible(true);
+        
+        btn_sell.setBackground(new java.awt.Color(51, 102, 255));
+        btn_sell.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btn_sell.setForeground(new java.awt.Color(255, 255, 255));
+        //table_listBook.setVisible(false);
+        //btn_BOOK.setText("BOOK");
+        btn_sell.setBorder(null);
+        btn_sell.setBorderPainted(false);
+        btn_sell.setContentAreaFilled(false);
+       // btn_BOOK.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_sell.setDefaultCapable(false);
+        btn_sell.setOpaque(false);
+        panelSell.setVisible(false);
+        }else{
+        GT.setVisible(false);
+        panelSell.setVisible(true);
+        //search.setVisible(false);
+        btn_sell.setBackground(Color.white);
+        btn_sell.setForeground(Color.BLUE);
+        btn_sell.setBorder(BorderFactory.createEmptyBorder());
+        btn_sell.setBorderPainted(false);
+        btn_sell.setOpaque(true);
+        //GT.setVisible(false);
+        rad_guest.setSelected(true);
+        panel_menber.setVisible(false);
+        BookClick(false);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -375,10 +495,17 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel backgound;
     private javax.swing.JButton btn_BOOK;
     private javax.swing.JButton btn_del;
+    private javax.swing.JButton btn_sell;
+    private javax.swing.ButtonGroup grouprad;
     private javax.swing.JLabel hello;
+    private javax.swing.JTextField inputID;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel panelSell;
+    private javax.swing.JPanel panel_menber;
     private javax.swing.JPopupMenu pop;
-    private javax.swing.JLabel retable;
+    private javax.swing.JRadioButton rad_guest;
+    private javax.swing.JRadioButton rad_menbers;
     private javax.swing.JPanel search;
     private javax.swing.JScrollPane table_listBook;
     private javax.swing.JTable tb1;
