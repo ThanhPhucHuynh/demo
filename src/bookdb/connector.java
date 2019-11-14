@@ -63,6 +63,32 @@ public class connector {
         }
         return books;
     }
+    public readers[] getReaders(){
+        readers[] Readers = new readers[0];          
+        try {
+          //  stmt = conn.createStatement();
+          PreparedStatement   ps = conn.prepareStatement("select * from readers");
+           ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Readers =(readers[]) Arrays.copyOf(Readers, Readers.length+1);
+                Readers[Readers.length-1] = new readers();
+                Readers[Readers.length-1].setID(rs.getString("id_readers"));
+                Readers[Readers.length-1].setName(rs.getString("name_readers"));
+                Readers[Readers.length-1].setAddress(rs.getString("address_readers"));
+                Readers[Readers.length-1].setphone(rs.getString("phone_readers"));
+                String name_book = rs.getString("name_readers");
+                System.out.println(name_book);
+               
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(connector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Readers;
+    }
+    
     public String getTL(String id_category){
         String name="xxx";
         try {
@@ -186,6 +212,111 @@ public class connector {
         return flag;
     }
     
+     public boolean addReaders(String ID,String Name,String address,String phone){
+        boolean flag = false;
+        CallableStatement cstmt=null;
+        //ResultSet rs = null;
+        System.err.println("oke la");
+        String check = getnameReadersexist(ID);
+         System.out.println(check);
+        if(check.equals("xxx")==true){
+        
+        
+        try {
+            cstmt=conn.prepareCall("{call sp_readers(?,?,?,?)}");
+            cstmt.setString(1,ID);
+            cstmt.setString(2, Name);
+            cstmt.setString(3, address);
+            cstmt.setString(4,phone);
+            cstmt.executeQuery();
+            flag=true;
+            cstmt.close();
+                    
+          } catch (SQLException ex) {
+            Logger.getLogger(connector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        }else{
+            System.err.println("da ton tai");
+            flag=false;
+        }
+          
+        return flag;
+    }
+    public boolean updateReaders(String ID,String Name,String address,String phone){
+        boolean flag = false;
+        CallableStatement cstmt=null;
+        //ResultSet rs = null;
+        System.err.println("oke la");
+        String check = getnameReadersexist(ID);
+         System.out.println(check);
+        if(check.equals("xxx")==false){
+        
+        try {
+            cstmt=conn.prepareCall("{call sp_updatereaders(?,?,?,?)}");
+            cstmt.setString(1,ID);
+            cstmt.setString(2, Name);
+            cstmt.setString(3, address);
+            cstmt.setString(4,phone);
+            cstmt.executeQuery();
+            flag=true;
+            cstmt.close();
+                    
+          } catch (SQLException ex) {
+            Logger.getLogger(connector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        }else{
+            System.err.println("no da ton tai");
+            flag=false;
+        }
+          
+        return flag;
+    }
+    
+    public String getnameReadersexist(String id){
+        String flag = null;
+         try {
+            stmt= conn.createStatement();
+            rs =stmt.executeQuery("select getName('"+id+"') as T");
+            while(rs.next()){
+           // System.err.println("kq"+rs.getString("getAdmin('"+account+"')"));
+            flag = rs.getString("T");
+            }
+        } catch (Exception ex) {
+            System.out.println("err: "+ ex);
+        }
+        return flag;
+    }
+    public boolean delReaders(String ID){
+        boolean flag = false;
+        CallableStatement cstmt=null;
+        //ResultSet rs = null;
+        System.err.println("oke la");
+        String check = getnameReadersexist(ID);
+         System.out.println(check);
+        if(check.equals("xxx")!=true){
+        
+        
+        try {
+            cstmt=conn.prepareCall("{call sp_delreaders(?)}");
+            cstmt.setString(1,ID);
+           
+            cstmt.executeQuery();
+            flag=true;
+            cstmt.close();
+                    
+          } catch (SQLException ex) {
+            Logger.getLogger(connector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        }else{
+            System.err.println("chua xoa");
+            flag=false;
+        }
+          
+        return flag;
+    }
     public String checkAdmin(String account, String passwoed){
         String pass = "-1";
         try {

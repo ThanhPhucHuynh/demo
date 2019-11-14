@@ -33,7 +33,6 @@ public class GUI extends javax.swing.JFrame {
     String getID_tb2=null,getName_tb2=null;
     connector cn = new connector();
     String[] id_sell =new String[0];
-   // DefaultTableModel dm;
     public String name;
     public GUI(String name) {
         this.name=name;
@@ -41,6 +40,7 @@ public class GUI extends javax.swing.JFrame {
         total_lable.setText(" "+Total);
         id_sell_list.setVisible(false);
         setResizable(false);
+        btn_readersClick(false);
       //  try {
        // setBackground(new Color(0,0,0,0));
      //   viewsetting.setEnable(true);
@@ -51,7 +51,9 @@ public class GUI extends javax.swing.JFrame {
             btn_sellClick(false);
             DefaultTableModel model = (DefaultTableModel) tb1.getModel();
             DefaultTableModel model1 = (DefaultTableModel) tb2.getModel();
+            DefaultTableModel model2 = (DefaultTableModel) tb3.getModel();
             book[] books = cn.dvsv();
+            readers[] Readers=cn.getReaders();
          //   TimeUnit.SECONDS.sleep(1);
             System.out.println("lenght: "+books.length);
             //book[]  = cn.dvsv();
@@ -61,6 +63,15 @@ public class GUI extends javax.swing.JFrame {
              //   System.out.println(books[i].getAuthor());
                 model.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getAuthor(),books[i].getCategory(),books[i].getPrice(),books[i].getSL()});
                 model1.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getPrice()});
+              //  model2.addRow(new Object[] {Readers[i].getID(),Readers[i].getName(),Readers[i].getAddress(),Readers[i].getPhone()});
+                i++;
+            }
+            i=0;
+            while(i!=(Readers.length)){
+             //   System.out.println(books[i].getAuthor());
+              //  model.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getAuthor(),books[i].getCategory(),books[i].getPrice(),books[i].getSL()});
+               // model1.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getPrice()});
+                model2.addRow(new Object[] {Readers[i].getID(),Readers[i].getName(),Readers[i].getAddress(),Readers[i].getPhone()});
                 i++;
             }
             //
@@ -79,6 +90,8 @@ public class GUI extends javax.swing.JFrame {
         this.name=name;
         initComponents();
         setResizable(false);
+        btn_sellClick(false);
+        btn_readersClick(false);
       //  try {
        // setBackground(new Color(0,0,0,0));
      //   viewsetting.setEnable(true);
@@ -90,8 +103,9 @@ public class GUI extends javax.swing.JFrame {
            btn_sellClick(false);
             DefaultTableModel model = (DefaultTableModel) tb1.getModel();
             DefaultTableModel model1 = (DefaultTableModel) tb2.getModel();
+             DefaultTableModel model2 = (DefaultTableModel) tb3.getModel();
             book[] books = cn.dvsv();
-        
+        readers[] Readers=cn.getReaders();
             System.out.println("lenght: "+books.length);
             
             int i=0;
@@ -99,6 +113,14 @@ public class GUI extends javax.swing.JFrame {
             while(i!=(books.length)){
                 model.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getAuthor(),books[i].getCategory(),books[i].getPrice(),books[i].getSL()});
                  model1.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getPrice()});
+                i++;
+            }
+             i=0;
+            while(i!=(Readers.length)){
+             //   System.out.println(books[i].getAuthor());
+              //  model.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getAuthor(),books[i].getCategory(),books[i].getPrice(),books[i].getSL()});
+               // model1.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getPrice()});
+                model2.addRow(new Object[] {Readers[i].getID(),Readers[i].getName(),Readers[i].getAddress(),Readers[i].getPhone()});
                 i++;
             }
             //
@@ -122,6 +144,7 @@ public class GUI extends javax.swing.JFrame {
           DefaultTableModel model = (DefaultTableModel) tb1.getModel();
         TableRowSorter <DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(model);
         tb1.setRowSorter(sorter);
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -135,6 +158,7 @@ public class GUI extends javax.swing.JFrame {
         pop = new javax.swing.JPopupMenu();
         grouprad = new javax.swing.ButtonGroup();
         GT = new javax.swing.JLabel();
+        btn_readers = new javax.swing.JButton();
         btn_sell = new javax.swing.JButton();
         btn_BOOK = new javax.swing.JButton();
         hello = new javax.swing.JLabel();
@@ -168,6 +192,22 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         id_sell_list = new javax.swing.JList<>();
         SELL = new javax.swing.JButton();
+        readers_pannel = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tb3 = new javax.swing.JTable();
+        id_textfield_readers = new javax.swing.JTextField();
+        Name_textfield_readers = new javax.swing.JTextField();
+        address_textfield_readers = new javax.swing.JTextField();
+        Phone_textfield_readers = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        del_readers = new javax.swing.JButton();
+        add_reader = new javax.swing.JButton();
+        update_reders = new javax.swing.JButton();
+        search_readers = new javax.swing.JTextField();
+        notification_readres = new javax.swing.JLabel();
         backgound = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -176,6 +216,22 @@ public class GUI extends javax.swing.JFrame {
 
         GT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Web 1280 – 2.jpg"))); // NOI18N
         getContentPane().add(GT, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 1030, 800));
+
+        btn_readers.setBackground(new java.awt.Color(51, 102, 255));
+        btn_readers.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btn_readers.setForeground(new java.awt.Color(255, 255, 255));
+        btn_readers.setText("READERS");
+        btn_readers.setBorder(null);
+        btn_readers.setBorderPainted(false);
+        btn_readers.setContentAreaFilled(false);
+        btn_readers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_readers.setDefaultCapable(false);
+        btn_readers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_readersMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 220, 60));
 
         btn_sell.setBackground(new java.awt.Color(51, 102, 255));
         btn_sell.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -191,7 +247,7 @@ public class GUI extends javax.swing.JFrame {
                 btn_sellMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_sell, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 220, 40));
+        getContentPane().add(btn_sell, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 220, 60));
 
         btn_BOOK.setBackground(new java.awt.Color(51, 102, 255));
         btn_BOOK.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -207,7 +263,7 @@ public class GUI extends javax.swing.JFrame {
                 btn_BOOKMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_BOOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 220, 40));
+        getContentPane().add(btn_BOOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 220, 60));
 
         hello.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         hello.setForeground(new java.awt.Color(255, 255, 255));
@@ -246,10 +302,7 @@ public class GUI extends javax.swing.JFrame {
         table_listBook.setViewportView(tb1);
         if (tb1.getColumnModel().getColumnCount() > 0) {
             tb1.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tb1.getColumnModel().getColumn(2).setHeaderValue("Author");
-            tb1.getColumnModel().getColumn(3).setHeaderValue("Category");
             tb1.getColumnModel().getColumn(5).setResizable(false);
-            tb1.getColumnModel().getColumn(5).setHeaderValue("So Luong");
         }
 
         search.add(table_listBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 770, 480));
@@ -430,6 +483,108 @@ public class GUI extends javax.swing.JFrame {
 
         getContentPane().add(panelSell, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 1020, 800));
 
+        readers_pannel.setBackground(new java.awt.Color(255, 255, 255));
+        readers_pannel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tb3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "Address", "Phone"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tb3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb3MouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tb3);
+        if (tb3.getColumnModel().getColumnCount() > 0) {
+            tb3.getColumnModel().getColumn(0).setPreferredWidth(2);
+            tb3.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tb3.getColumnModel().getColumn(2).setPreferredWidth(4);
+            tb3.getColumnModel().getColumn(3).setPreferredWidth(100);
+        }
+
+        readers_pannel.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 570, 270));
+        readers_pannel.add(id_textfield_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 210, 30));
+        readers_pannel.add(Name_textfield_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 210, 30));
+
+        address_textfield_readers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                address_textfield_readersActionPerformed(evt);
+            }
+        });
+        readers_pannel.add(address_textfield_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 210, 30));
+        readers_pannel.add(Phone_textfield_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 210, 30));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Phone   :");
+        readers_pannel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 60, 30));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("ID          :");
+        readers_pannel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 60, 30));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Name    :");
+        readers_pannel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 60, 30));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Address :");
+        readers_pannel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 60, 30));
+
+        del_readers.setText("Delete");
+        del_readers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                del_readersMouseClicked(evt);
+            }
+        });
+        del_readers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                del_readersActionPerformed(evt);
+            }
+        });
+        readers_pannel.add(del_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, -1, -1));
+
+        add_reader.setText("New");
+        add_reader.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                add_readerMouseClicked(evt);
+            }
+        });
+        readers_pannel.add(add_reader, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 60, -1));
+
+        update_reders.setText("Update");
+        update_reders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                update_redersMouseClicked(evt);
+            }
+        });
+        readers_pannel.add(update_reders, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
+
+        search_readers.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                search_readersKeyTyped(evt);
+            }
+        });
+        readers_pannel.add(search_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, 190, 30));
+
+        notification_readres.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        notification_readres.setForeground(new java.awt.Color(255, 0, 51));
+        readers_pannel.add(notification_readres, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 220, 30));
+
+        getContentPane().add(readers_pannel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 1020, 800));
+
         backgound.setBackground(new java.awt.Color(255, 255, 255));
         backgound.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         backgound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Web 1280 – 1.jpg"))); // NOI18N
@@ -442,6 +597,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void btn_BOOKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BOOKMouseClicked
         BookClick(true);
+      //  btn_sellClick(false);
     }//GEN-LAST:event_btn_BOOKMouseClicked
 
     private void helloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helloMouseClicked
@@ -495,6 +651,7 @@ public class GUI extends javax.swing.JFrame {
     private void btn_sellMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_sellMouseClicked
         // TODO add your handling code here:
         btn_sellClick(true);
+       // btn_readersClick(false);
     }//GEN-LAST:event_btn_sellMouseClicked
 
     private void rad_menbersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rad_menbersMouseClicked
@@ -539,7 +696,7 @@ public class GUI extends javax.swing.JFrame {
         rowSorter = new TableRowSorter<DefaultTableModel>(model);
         tb2.setRowSorter(rowSorter);
         
-        rowSorter.setRowFilter(RowFilter.regexFilter(search_book.getText().toLowerCase()));
+        rowSorter.setRowFilter(RowFilter.regexFilter(search_book.getText().toString()));
     }//GEN-LAST:event_search_bookKeyTyped
         DefaultListModel<String> model_list =  new DefaultListModel<>();
         DefaultListModel<String>  model_list_gia =  new DefaultListModel();
@@ -566,6 +723,9 @@ public class GUI extends javax.swing.JFrame {
 
     private void del_allMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_del_allMouseClicked
         // TODO add your handling code here:
+        if(Total==0){
+            
+        }else{
         DefaultListModel model_list1 = (DefaultListModel) sell_list_book.getModel();
         DefaultListModel  model_list_gia1 =  (DefaultListModel) sell_gia_list.getModel();
         DefaultListModel  model_list_id1 =  (DefaultListModel) id_sell_list.getModel();
@@ -574,6 +734,7 @@ public class GUI extends javax.swing.JFrame {
         model_list_id1.removeAllElements();
         Total=0;
         total_lable.setText(""+Total);
+        }
     }//GEN-LAST:event_del_allMouseClicked
 
     private void sell_list_bookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sell_list_bookMouseClicked
@@ -586,6 +747,8 @@ public class GUI extends javax.swing.JFrame {
 
     private void btn_del_sellMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_del_sellMouseClicked
         // TODO add your handling code here:
+        if(sell_gia_list.getSelectedValue()==null){}
+        else{
         System.out.println(sell_gia_list.getSelectedValue());
         Total=Total-Integer.parseInt( sell_gia_list.getSelectedValue());
         DefaultListModel model_list1 = (DefaultListModel) sell_list_book.getModel();
@@ -597,23 +760,159 @@ public class GUI extends javax.swing.JFrame {
         model_list_id1.remove(index_list);
         model_list1.remove(index_list);
         model_list_gia1.remove(index_list);
-       
+        }
     }//GEN-LAST:event_btn_del_sellMouseClicked
 
     private void SELLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SELLMouseClicked
         // TODO add your handling code here:
-        DefaultListModel  model_list_id1 =  (DefaultListModel) id_sell_list.getModel();
+        try{
+            DefaultListModel  model_list_id1 =  (DefaultListModel) id_sell_list.getModel();
+        
         for(int i=0; i<model_list_id1.getSize() ; i++){
-            System.err.println(model_list_id1.getElementAt(i));
+            System.out.println(model_list_id1.getElementAt(i));
             String id=model_list_id1.getElementAt(i).toString();
             cn.delBook(id);
         }
         JOptionPane.showMessageDialog(rootPane, "Complete");
         new GUI(this.name).setVisible(true);
         dispose();
+        }catch(Exception e){
+             JOptionPane.showMessageDialog(rootPane, "Erro");
+        }
+        
         
     }//GEN-LAST:event_SELLMouseClicked
-     public void BookClick(boolean click){
+
+    private void btn_readersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_readersMouseClicked
+        // TODO add your handling code here:
+        BookClick(false);
+        btn_sellClick(false);
+        btn_readersClick(true);
+        
+    }//GEN-LAST:event_btn_readersMouseClicked
+
+    private void address_textfield_readersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_address_textfield_readersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_address_textfield_readersActionPerformed
+
+    private void del_readersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_del_readersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_del_readersActionPerformed
+
+    private void tb3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb3MouseClicked
+        // TODO add your handling code here:
+         DefaultTableModel model = (DefaultTableModel) tb3.getModel();
+         index = tb3.convertRowIndexToModel(tb3.getSelectedRow());
+         getID = model.getValueAt(index, 0).toString();
+         System.out.println(getID);
+         id_textfield_readers.setText(model.getValueAt(index, 0).toString());
+         Name_textfield_readers.setText(model.getValueAt(index, 1).toString());
+         address_textfield_readers.setText(model.getValueAt(index, 2).toString());
+         Phone_textfield_readers.setText(model.getValueAt(index, 3).toString());
+    }//GEN-LAST:event_tb3MouseClicked
+
+    private void search_readersKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_readersKeyTyped
+        // TODO add your handling code here:
+        String text = search_readers.getText().toString();
+        DefaultTableModel model = (DefaultTableModel) tb3.getModel();
+        TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(tb3.getModel());
+        tb3.setRowSorter(rowSorter);
+        
+        rowSorter.setRowFilter(RowFilter.regexFilter(search_readers.getText()));
+        
+        
+    }//GEN-LAST:event_search_readersKeyTyped
+
+    private void add_readerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_readerMouseClicked
+        // TODO add your handling code here:
+        String id,name,address,phone;
+        id = id_textfield_readers.getText().toString();
+        name = Name_textfield_readers.getText().toString();
+        address= address_textfield_readers.getText().toString();
+        phone=Phone_textfield_readers.getText().toString();
+        
+        if(id==""&&id==null){
+            notification_readres.setText("Error");
+            notification_readres.setForeground(Color.red);
+        }{
+            if(cn.addReaders(id, name, address, phone)==true){
+                notification_readres.setForeground(Color.GREEN);
+                notification_readres.setText("complete");
+                refTb3();
+            }else{
+                notification_readres.setText("Error");
+                 notification_readres.setForeground(Color.red);
+            }
+        }
+    }//GEN-LAST:event_add_readerMouseClicked
+
+    private void update_redersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_redersMouseClicked
+        // TODO add your handling code here:
+        String id,name,address,phone;
+        id = id_textfield_readers.getText().toString();
+        name = Name_textfield_readers.getText().toString();
+        address= address_textfield_readers.getText().toString();
+        phone=Phone_textfield_readers.getText().toString();
+        
+        if(id==""&&id==null){
+            notification_readres.setText("Error");
+            notification_readres.setForeground(Color.red);
+        }{
+            if(cn.updateReaders(id, name, address, phone)==true){
+                notification_readres.setForeground(Color.GREEN);
+                notification_readres.setText("complete");
+                refTb3();
+            }else{
+                notification_readres.setText("Error");
+                 notification_readres.setForeground(Color.red);
+            }
+        }
+    }//GEN-LAST:event_update_redersMouseClicked
+
+    private void del_readersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_del_readersMouseClicked
+        // TODO add your handling code here:
+        String id,name,address,phone;
+        id = id_textfield_readers.getText().toString();
+        name = Name_textfield_readers.getText().toString();
+        address= address_textfield_readers.getText().toString();
+        phone=Phone_textfield_readers.getText().toString();
+        
+        if(id==""&&id==null){
+            notification_readres.setText("Error");
+            notification_readres.setForeground(Color.red);
+        }{
+            if(cn.delReaders(id)==true){
+                notification_readres.setForeground(Color.GREEN);
+                notification_readres.setText("complete");
+                refTb3();
+            }else{
+                notification_readres.setText("Error");
+                 notification_readres.setForeground(Color.red);
+            }
+        }
+    }//GEN-LAST:event_del_readersMouseClicked
+    public void refTb3(){
+        DefaultTableModel model2 = (DefaultTableModel) tb3.getModel(); 
+        readers[] Readers=cn.getReaders();
+         //   TimeUnit.SECONDS.sleep(1);
+         int rows = model2.getRowCount(); 
+        for(int i = rows - 1; i >=0; i--)
+            {
+              model2.removeRow(i); 
+            }
+            //book[]  = cn.dvsv();
+            int i=0;
+            
+      
+            while(i!=(Readers.length)){
+             //   System.out.println(books[i].getAuthor());
+              //  model.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getAuthor(),books[i].getCategory(),books[i].getPrice(),books[i].getSL()});
+               // model1.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getPrice()});
+                model2.addRow(new Object[] {Readers[i].getID(),Readers[i].getName(),Readers[i].getAddress(),Readers[i].getPhone()});
+                i++;
+            }
+    } 
+    public void BookClick(boolean click){
         if(click == false){
         //GT.setVisible(true);
         btn_BOOK.setBackground(new java.awt.Color(51, 102, 255));
@@ -645,6 +944,7 @@ public class GUI extends javax.swing.JFrame {
         tb1.setVisible(true);
         //GT.setVisible(false);
         btn_sellClick(false);
+            btn_readersClick(false);
         }
     }
     
@@ -674,6 +974,36 @@ public class GUI extends javax.swing.JFrame {
         rad_guest.setSelected(true);
         panel_menber.setVisible(false);
         BookClick(false);
+        btn_readersClick(false);
+        }
+    }
+     public void btn_readersClick(boolean click){
+        if(click == false){
+        //GT.setVisible(true);
+        
+        btn_readers.setBackground(new java.awt.Color(51, 102, 255));
+        btn_readers.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btn_readers.setForeground(new java.awt.Color(255, 255, 255));
+        btn_readers.setBorder(null);
+        btn_readers.setBorderPainted(false);
+        btn_readers.setContentAreaFilled(false);
+        btn_readers.setDefaultCapable(false);
+        btn_readers.setOpaque(false);
+        readers_pannel.setVisible(false);
+        }else{
+        GT.setVisible(false);
+        //readers_pannel.setVisible(true);
+        search.setVisible(false);
+        btn_readers.setBackground(Color.white);
+        btn_readers.setForeground(Color.BLUE);
+        btn_readers.setBorder(BorderFactory.createEmptyBorder());
+        btn_readers.setBorderPainted(false);
+        btn_readers.setOpaque(true);
+        //GT.setVisible(false);
+       // rad_guest.setSelected(true);
+        readers_pannel.setVisible(true);
+        BookClick(false);
+        btn_sellClick(false);
         }
     }
     /**
@@ -713,41 +1043,58 @@ public class GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel GT;
+    private javax.swing.JTextField Name_textfield_readers;
+    private javax.swing.JTextField Phone_textfield_readers;
     private javax.swing.JButton SELL;
     private javax.swing.JLabel add_book;
+    private javax.swing.JButton add_reader;
+    private javax.swing.JTextField address_textfield_readers;
     private javax.swing.JLabel backgound;
     private javax.swing.JButton btn_BOOK;
     private javax.swing.JButton btn_add_sell;
     private javax.swing.JButton btn_del;
     private javax.swing.JButton btn_del_sell;
+    private javax.swing.JButton btn_readers;
     private javax.swing.JButton btn_sell;
     private javax.swing.JButton del_all;
+    private javax.swing.JButton del_readers;
     private javax.swing.ButtonGroup grouprad;
     private javax.swing.JLabel hello;
     private javax.swing.JList<String> id_sell_list;
+    private javax.swing.JTextField id_textfield_readers;
     private javax.swing.JTextField inputID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel notification_readres;
     private javax.swing.JPanel panelSell;
     private javax.swing.JPanel panel_menber;
     private javax.swing.JPopupMenu pop;
     private javax.swing.JRadioButton rad_guest;
     private javax.swing.JRadioButton rad_menbers;
+    private javax.swing.JPanel readers_pannel;
     private javax.swing.JPanel search;
     private javax.swing.JTextField search_book;
+    private javax.swing.JTextField search_readers;
     private javax.swing.JList<String> sell_gia_list;
     private javax.swing.JList<String> sell_list_book;
     private javax.swing.JScrollPane table_listBook;
     private javax.swing.JScrollPane table_listBook1;
     private javax.swing.JTable tb1;
     private javax.swing.JTable tb2;
+    private javax.swing.JTable tb3;
     private javax.swing.JTextField text_search;
     private javax.swing.JLabel total_lable;
     private javax.swing.JLabel total_lable1;
+    private javax.swing.JButton update_reders;
     // End of variables declaration//GEN-END:variables
 }
