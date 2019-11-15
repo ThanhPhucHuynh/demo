@@ -37,6 +37,8 @@ public class GUI extends javax.swing.JFrame {
     public GUI(String name) {
         this.name=name;
         initComponents();
+        //btn_sellClick(false);
+        jPanel_vip.setVisible(false);
         total_lable.setText(" "+Total);
         id_sell_list.setVisible(false);
         setResizable(false);
@@ -192,6 +194,12 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         id_sell_list = new javax.swing.JList<>();
         SELL = new javax.swing.JButton();
+        jPanel_vip = new javax.swing.JPanel();
+        readers_wellcome = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        discount = new javax.swing.JLabel();
+        total_jf = new javax.swing.JLabel();
+        total_lable2 = new javax.swing.JLabel();
         readers_pannel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tb3 = new javax.swing.JTable();
@@ -351,7 +359,7 @@ public class GUI extends javax.swing.JFrame {
                 rad_menbersMouseClicked(evt);
             }
         });
-        panelSell.add(rad_menbers, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, 40));
+        panelSell.add(rad_menbers, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 130, 40));
 
         grouprad.add(rad_guest);
         rad_guest.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -361,16 +369,25 @@ public class GUI extends javax.swing.JFrame {
                 rad_guestMouseClicked(evt);
             }
         });
-        panelSell.add(rad_guest, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, 40));
+        panelSell.add(rad_guest, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 130, 40));
 
         panel_menber.setBackground(new java.awt.Color(255, 255, 255));
         panel_menber.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panel_menber.add(inputID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 180, 40));
+
+        inputID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputIDKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputIDKeyTyped(evt);
+            }
+        });
+        panel_menber.add(inputID, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 180, 40));
 
         jLabel2.setText("ID member:");
-        panel_menber.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 80, 20));
+        panel_menber.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 20));
 
-        panelSell.add(panel_menber, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 230, 100));
+        panelSell.add(panel_menber, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 230, 100));
 
         search_book.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -460,7 +477,7 @@ public class GUI extends javax.swing.JFrame {
 
         total_lable.setFont(new java.awt.Font("Sitka Subheading", 1, 18)); // NOI18N
         total_lable.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        panelSell.add(total_lable, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 440, 130, 40));
+        panelSell.add(total_lable, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 450, 130, 40));
 
         total_lable1.setFont(new java.awt.Font("Sitka Subheading", 1, 18)); // NOI18N
         total_lable1.setText("Price:");
@@ -479,7 +496,31 @@ public class GUI extends javax.swing.JFrame {
                 SELLMouseClicked(evt);
             }
         });
-        panelSell.add(SELL, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 530, 350, 40));
+        panelSell.add(SELL, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 580, 350, 40));
+
+        jPanel_vip.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel_vip.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        readers_wellcome.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        readers_wellcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel_vip.add(readers_wellcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 150, 40));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/member-card.png"))); // NOI18N
+        jPanel_vip.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 150, 130));
+
+        panelSell.add(jPanel_vip, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 180, 200));
+
+        discount.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        discount.setText("Discount:                        30%");
+        panelSell.add(discount, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 510, 180, 20));
+
+        total_jf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        total_jf.setText("Total:");
+        panelSell.add(total_jf, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 550, 50, -1));
+
+        total_lable2.setFont(new java.awt.Font("Sitka Subheading", 1, 18)); // NOI18N
+        total_lable2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        panelSell.add(total_lable2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 530, 180, 40));
 
         getContentPane().add(panelSell, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 1020, 800));
 
@@ -515,33 +556,33 @@ public class GUI extends javax.swing.JFrame {
             tb3.getColumnModel().getColumn(3).setPreferredWidth(100);
         }
 
-        readers_pannel.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 570, 270));
-        readers_pannel.add(id_textfield_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 210, 30));
-        readers_pannel.add(Name_textfield_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 210, 30));
+        readers_pannel.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 570, 270));
+        readers_pannel.add(id_textfield_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 210, 30));
+        readers_pannel.add(Name_textfield_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 210, 30));
 
         address_textfield_readers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 address_textfield_readersActionPerformed(evt);
             }
         });
-        readers_pannel.add(address_textfield_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 210, 30));
-        readers_pannel.add(Phone_textfield_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 210, 30));
+        readers_pannel.add(address_textfield_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 210, 30));
+        readers_pannel.add(Phone_textfield_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 210, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Phone   :");
-        readers_pannel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 60, 30));
+        readers_pannel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 60, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("ID          :");
-        readers_pannel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 60, 30));
+        readers_pannel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 60, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Name    :");
-        readers_pannel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 60, 30));
+        readers_pannel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 60, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Address :");
-        readers_pannel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 60, 30));
+        readers_pannel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 60, 30));
 
         del_readers.setText("Delete");
         del_readers.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -554,7 +595,7 @@ public class GUI extends javax.swing.JFrame {
                 del_readersActionPerformed(evt);
             }
         });
-        readers_pannel.add(del_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, -1, -1));
+        readers_pannel.add(del_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, -1));
 
         add_reader.setText("New");
         add_reader.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -562,7 +603,7 @@ public class GUI extends javax.swing.JFrame {
                 add_readerMouseClicked(evt);
             }
         });
-        readers_pannel.add(add_reader, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 60, -1));
+        readers_pannel.add(add_reader, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 60, -1));
 
         update_reders.setText("Update");
         update_reders.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -570,18 +611,18 @@ public class GUI extends javax.swing.JFrame {
                 update_redersMouseClicked(evt);
             }
         });
-        readers_pannel.add(update_reders, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
+        readers_pannel.add(update_reders, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, -1, -1));
 
         search_readers.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 search_readersKeyTyped(evt);
             }
         });
-        readers_pannel.add(search_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, 190, 30));
+        readers_pannel.add(search_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 70, 190, 30));
 
         notification_readres.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         notification_readres.setForeground(new java.awt.Color(255, 0, 51));
-        readers_pannel.add(notification_readres, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 220, 30));
+        readers_pannel.add(notification_readres, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 220, 30));
 
         getContentPane().add(readers_pannel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 1020, 800));
 
@@ -666,6 +707,11 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(rad_guest.isSelected()){
             panel_menber.setVisible(false);
+             jPanel_vip.setVisible(false);
+            
+            discount.setVisible(false);
+            total_jf.setVisible(false);
+            total_lable2.setVisible(false);
         }
     }//GEN-LAST:event_rad_guestMouseClicked
 
@@ -891,6 +937,39 @@ public class GUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_del_readersMouseClicked
+
+    private void inputIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIDKeyTyped
+        // TODO add your handling code here:
+       
+        
+    }//GEN-LAST:event_inputIDKeyTyped
+
+    private void inputIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIDKeyPressed
+        // TODO add your handling code here:
+         String id = inputID.getText();
+        System.out.println(id);
+        String name=cn.getnameReadersexist(id);
+        //System.out.println(cn.getnameReadersexist("B17"));
+        System.out.println(name);
+        if(!name.equals("xxx")){
+            
+            readers_wellcome.setText(name);
+            jPanel_vip.setVisible(true);
+            discount.setVisible(true);
+            total_jf.setVisible(true);
+            float a = (float) Total * 70 /100;
+          //  a= 5*5;
+            total_lable2.setText(a+" VND");
+            total_lable2.setVisible(true);
+        }else{
+            System.out.println("kh thay");
+            jPanel_vip.setVisible(false);
+            
+            discount.setVisible(false);
+            total_jf.setVisible(false);
+            total_lable2.setVisible(false);
+        }
+    }//GEN-LAST:event_inputIDKeyPressed
     public void refTb3(){
         DefaultTableModel model2 = (DefaultTableModel) tb3.getModel(); 
         readers[] Readers=cn.getReaders();
@@ -962,6 +1041,11 @@ public class GUI extends javax.swing.JFrame {
         btn_sell.setOpaque(false);
         panelSell.setVisible(false);
         }else{
+            jPanel_vip.setVisible(false);
+            
+            discount.setVisible(false);
+            total_jf.setVisible(false);
+            total_lable2.setVisible(false);
         GT.setVisible(false);
         panelSell.setVisible(true);
         //search.setVisible(false);
@@ -1058,6 +1142,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_sell;
     private javax.swing.JButton del_all;
     private javax.swing.JButton del_readers;
+    private javax.swing.JLabel discount;
     private javax.swing.ButtonGroup grouprad;
     private javax.swing.JLabel hello;
     private javax.swing.JList<String> id_sell_list;
@@ -1070,7 +1155,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel_vip;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1082,6 +1169,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton rad_guest;
     private javax.swing.JRadioButton rad_menbers;
     private javax.swing.JPanel readers_pannel;
+    private javax.swing.JLabel readers_wellcome;
     private javax.swing.JPanel search;
     private javax.swing.JTextField search_book;
     private javax.swing.JTextField search_readers;
@@ -1093,8 +1181,10 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTable tb2;
     private javax.swing.JTable tb3;
     private javax.swing.JTextField text_search;
+    private javax.swing.JLabel total_jf;
     private javax.swing.JLabel total_lable;
     private javax.swing.JLabel total_lable1;
+    private javax.swing.JLabel total_lable2;
     private javax.swing.JButton update_reders;
     // End of variables declaration//GEN-END:variables
 }

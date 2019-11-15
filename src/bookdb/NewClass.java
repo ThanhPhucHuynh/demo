@@ -12,7 +12,7 @@ package bookdb;
 public class NewClass {
     public static void main(String agp[]){
         connector cn =new  connector();
-        System.out.println(cn.getnameReadersexist("B16"));
+        System.out.println(cn.getnameReadersexist("B17"));
         cn.addReaders("B16", "Thanh Thao", "Dong Thap", "09278137");
     }
 }
