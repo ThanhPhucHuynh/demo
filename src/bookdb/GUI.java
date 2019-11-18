@@ -27,111 +27,88 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
-    int Total=0;
-    int index,price;
-    String getID=null;
-    String getID_tb2=null,getName_tb2=null;
+    int Total = 0;
+    int index, price;
+    String getID = null;
+    String getID_tb2 = null, getName_tb2 = null;
     connector cn = new connector();
-    String[] id_sell =new String[0];
+    String[] id_sell = new String[0];
     public String name;
+
     public GUI(String name) {
-        this.name=name;
+        this.name = name;
         initComponents();
-        //btn_sellClick(false);
         jPanel_vip.setVisible(false);
-        total_lable.setText(" "+Total);
+        total_lable.setText(" " + Total);
         id_sell_list.setVisible(false);
         setResizable(false);
         btn_readersClick(false);
-      //  try {
-       // setBackground(new Color(0,0,0,0));
-     //   viewsetting.setEnable(true);
-           // BOOK1.setVisible(false);
-           table_listBook.setVisible(false);
-           search.setVisible(false);
-           hello.setText("Wellcome "+name);
-            btn_sellClick(false);
-            DefaultTableModel model = (DefaultTableModel) tb1.getModel();
-            DefaultTableModel model1 = (DefaultTableModel) tb2.getModel();
-            DefaultTableModel model2 = (DefaultTableModel) tb3.getModel();
-            book[] books = cn.dvsv();
-            readers[] Readers=cn.getReaders();
-         //   TimeUnit.SECONDS.sleep(1);
-            System.out.println("lenght: "+books.length);
-            //book[]  = cn.dvsv();
-            int i=0;
-            
-            while(i!=(books.length)){
-             //   System.out.println(books[i].getAuthor());
-                model.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getAuthor(),books[i].getCategory(),books[i].getPrice(),books[i].getSL()});
-                model1.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getPrice()});
-              //  model2.addRow(new Object[] {Readers[i].getID(),Readers[i].getName(),Readers[i].getAddress(),Readers[i].getPhone()});
-                i++;
-            }
-            i=0;
-            while(i!=(Readers.length)){
-             //   System.out.println(books[i].getAuthor());
-              //  model.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getAuthor(),books[i].getCategory(),books[i].getPrice(),books[i].getSL()});
-               // model1.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getPrice()});
-                model2.addRow(new Object[] {Readers[i].getID(),Readers[i].getName(),Readers[i].getAddress(),Readers[i].getPhone()});
-                i++;
-            }
-            //
-            
-            
-            
-            cn.checkAdmin("B1706515", "123");
-      //  } catch (InterruptedException ex) {
-        //    Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-       // }
-            //tb1.setComponentPopupMenu(pop);
-                  sort();
-        
+        table_listBook.setVisible(false);
+        search.setVisible(false);
+        hello.setText("Wellcome " + name);
+        btn_sellClick(false);
+        DefaultTableModel model = (DefaultTableModel) tb1.getModel();
+        DefaultTableModel model1 = (DefaultTableModel) tb2.getModel();
+        DefaultTableModel model2 = (DefaultTableModel) tb3.getModel();
+        book[] books = cn.dvsv();
+        readers[] Readers = cn.getReaders();
+        //   TimeUnit.SECONDS.sleep(1);
+        System.out.println("lenght: " + books.length);
+        //book[]  = cn.dvsv();
+        int i = 0;
+
+        while (i != (books.length)) {
+            model.addRow(new Object[]{books[i].getID(), books[i].getName(), books[i].getAuthor(), books[i].getCategory(), books[i].getPrice(), books[i].getSL()});
+            model1.addRow(new Object[]{books[i].getID(), books[i].getName(), books[i].getPrice()});
+            //  model2.addRow(new Object[] {Readers[i].getID(),Readers[i].getName(),Readers[i].getAddress(),Readers[i].getPhone()});
+            i++;
+        }
+        i = 0;
+        while (i != (Readers.length)) {
+            model2.addRow(new Object[]{Readers[i].getID(), Readers[i].getName(), Readers[i].getAddress(), Readers[i].getPhone()});
+            i++;
+        }
+        cn.checkAdmin("B1706515", "123");
+        sort();
+
     }
-    public GUI(String name,int u) {
-        this.name=name;
+
+    public GUI(String name, int u) {
+        this.name = name;
         initComponents();
         setResizable(false);
         btn_sellClick(false);
         btn_readersClick(false);
-      //  try {
-       // setBackground(new Color(0,0,0,0));
-     //   viewsetting.setEnable(true);
-           // BOOK1.setVisible(false);
-            total_lable.setText(" "+Total);
-             id_sell_list.setVisible(false);
-           hello.setText("Wellcome "+name);
-           
-           btn_sellClick(false);
-            DefaultTableModel model = (DefaultTableModel) tb1.getModel();
-            DefaultTableModel model1 = (DefaultTableModel) tb2.getModel();
-             DefaultTableModel model2 = (DefaultTableModel) tb3.getModel();
-            book[] books = cn.dvsv();
-        readers[] Readers=cn.getReaders();
-            System.out.println("lenght: "+books.length);
-            
-            int i=0;
-            
-            while(i!=(books.length)){
-                model.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getAuthor(),books[i].getCategory(),books[i].getPrice(),books[i].getSL()});
-                 model1.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getPrice()});
-                i++;
-            }
-             i=0;
-            while(i!=(Readers.length)){
-             //   System.out.println(books[i].getAuthor());
-              //  model.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getAuthor(),books[i].getCategory(),books[i].getPrice(),books[i].getSL()});
-               // model1.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getPrice()});
-                model2.addRow(new Object[] {Readers[i].getID(),Readers[i].getName(),Readers[i].getAddress(),Readers[i].getPhone()});
-                i++;
-            }
-            //
-            
-            sort();
-            
+        total_lable.setText(" " + Total);
+        id_sell_list.setVisible(false);
+        hello.setText("Wellcome " + name);
+
+        btn_sellClick(false);
+        DefaultTableModel model = (DefaultTableModel) tb1.getModel();
+        DefaultTableModel model1 = (DefaultTableModel) tb2.getModel();
+        DefaultTableModel model2 = (DefaultTableModel) tb3.getModel();
+        book[] books = cn.dvsv();
+        readers[] Readers = cn.getReaders();
+        System.out.println("lenght: " + books.length);
+
+        int i = 0;
+
+        while (i != (books.length)) {
+            model.addRow(new Object[]{books[i].getID(), books[i].getName(), books[i].getAuthor(), books[i].getCategory(), books[i].getPrice(), books[i].getSL()});
+            model1.addRow(new Object[]{books[i].getID(), books[i].getName(), books[i].getPrice()});
+            i++;
+        }
+        i = 0;
+        while (i != (Readers.length)) {
+            model2.addRow(new Object[]{Readers[i].getID(), Readers[i].getName(), Readers[i].getAddress(), Readers[i].getPhone()});
+            i++;
+        }
+        //
+
+        sort();
+
         cn.checkAdmin("B1706515", "123");
-    
-        
+
         btn_BOOK.setBackground(Color.white);
         btn_BOOK.setForeground(Color.BLUE);
         btn_BOOK.setBorder(BorderFactory.createEmptyBorder());
@@ -141,13 +118,15 @@ public class GUI extends javax.swing.JFrame {
         GT.setVisible(false);
         search.setVisible(true);
     }
+
     //sap xep thep cot
-    public void sort(){
-          DefaultTableModel model = (DefaultTableModel) tb1.getModel();
-        TableRowSorter <DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(model);
+    public void sort() {
+        DefaultTableModel model = (DefaultTableModel) tb1.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(model);
         tb1.setRowSorter(sorter);
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -219,7 +198,7 @@ public class GUI extends javax.swing.JFrame {
         backgound = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 800));
+        setPreferredSize(new java.awt.Dimension(1100, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         GT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Web 1280 – 2.jpg"))); // NOI18N
@@ -313,7 +292,7 @@ public class GUI extends javax.swing.JFrame {
             tb1.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        search.add(table_listBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 770, 480));
+        search.add(table_listBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 770, 420));
 
         text_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -346,7 +325,7 @@ public class GUI extends javax.swing.JFrame {
         });
         search.add(btn_del, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 80, 30));
 
-        getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 830, 670));
+        getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 830, 660));
 
         panelSell.setBackground(new java.awt.Color(255, 255, 255));
         panelSell.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -496,7 +475,7 @@ public class GUI extends javax.swing.JFrame {
                 SELLMouseClicked(evt);
             }
         });
-        panelSell.add(SELL, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 580, 350, 40));
+        panelSell.add(SELL, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 570, 350, 40));
 
         jPanel_vip.setBackground(new java.awt.Color(255, 255, 255));
         jPanel_vip.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -512,15 +491,15 @@ public class GUI extends javax.swing.JFrame {
 
         discount.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         discount.setText("Discount:                        30%");
-        panelSell.add(discount, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 510, 180, 20));
+        panelSell.add(discount, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 490, 180, 20));
 
         total_jf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         total_jf.setText("Total:");
-        panelSell.add(total_jf, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 550, 50, -1));
+        panelSell.add(total_jf, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 530, 50, -1));
 
         total_lable2.setFont(new java.awt.Font("Sitka Subheading", 1, 18)); // NOI18N
         total_lable2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        panelSell.add(total_lable2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 530, 180, 40));
+        panelSell.add(total_lable2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 520, 180, 40));
 
         getContentPane().add(panelSell, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 1020, 800));
 
@@ -556,7 +535,7 @@ public class GUI extends javax.swing.JFrame {
             tb3.getColumnModel().getColumn(3).setPreferredWidth(100);
         }
 
-        readers_pannel.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 570, 270));
+        readers_pannel.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 510, 270));
         readers_pannel.add(id_textfield_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 210, 30));
         readers_pannel.add(Name_textfield_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 210, 30));
 
@@ -618,10 +597,11 @@ public class GUI extends javax.swing.JFrame {
                 search_readersKeyTyped(evt);
             }
         });
-        readers_pannel.add(search_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 70, 190, 30));
+        readers_pannel.add(search_readers, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 200, 30));
 
-        notification_readres.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        notification_readres.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         notification_readres.setForeground(new java.awt.Color(255, 0, 51));
+        notification_readres.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         readers_pannel.add(notification_readres, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 220, 30));
 
         getContentPane().add(readers_pannel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 1020, 800));
@@ -638,7 +618,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void btn_BOOKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BOOKMouseClicked
         BookClick(true);
-      //  btn_sellClick(false);
+        //  btn_sellClick(false);
     }//GEN-LAST:event_btn_BOOKMouseClicked
 
     private void helloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helloMouseClicked
@@ -646,6 +626,7 @@ public class GUI extends javax.swing.JFrame {
         GT.setVisible(true);
         BookClick(false);
         btn_sellClick(false);
+        btn_readersClick(false);
     }//GEN-LAST:event_helloMouseClicked
 
     private void text_searchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_text_searchKeyTyped
@@ -653,10 +634,10 @@ public class GUI extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tb1.getModel();
         TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(tb1.getModel());
         tb1.setRowSorter(rowSorter);
-        
+
         rowSorter.setRowFilter(RowFilter.regexFilter(text_search.getText()));
-        
-        
+
+
     }//GEN-LAST:event_text_searchKeyTyped
 
     private void text_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_searchActionPerformed
@@ -666,49 +647,45 @@ public class GUI extends javax.swing.JFrame {
     private void add_bookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_bookMouseClicked
         this.setVisible(false);
         new Add_book(this.name).setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_add_bookMouseClicked
 
     private void tb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb1MouseClicked
-         DefaultTableModel model = (DefaultTableModel) tb1.getModel();
-         index = tb1.convertRowIndexToModel(tb1.getSelectedRow());
-         
-         getID = model.getValueAt(index, 0).toString();
-         System.out.println(getID);
+        DefaultTableModel model = (DefaultTableModel) tb1.getModel();
+        index = tb1.convertRowIndexToModel(tb1.getSelectedRow());
+
+        getID = model.getValueAt(index, 0).toString();
+        System.out.println(getID);
     }//GEN-LAST:event_tb1MouseClicked
 
     private void btn_delMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_delMouseClicked
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) tb1.getModel();
         cn.delBook(getID);
-        new GUI(name,1).setVisible(true);
+        new GUI(name, 1).setVisible(true);
         this.setVisible(false);
         dispose();
-        //model.removeRow(index);
-        
+
     }//GEN-LAST:event_btn_delMouseClicked
 
     private void btn_sellMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_sellMouseClicked
-        // TODO add your handling code here:
         btn_sellClick(true);
-       // btn_readersClick(false);
     }//GEN-LAST:event_btn_sellMouseClicked
 
     private void rad_menbersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rad_menbersMouseClicked
         // TODO add your handling code here:
-        if(rad_menbers.isSelected()){
+        if (rad_menbers.isSelected()) {
             panel_menber.setVisible(true);
         }
-        
+
     }//GEN-LAST:event_rad_menbersMouseClicked
 
     private void rad_guestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rad_guestMouseClicked
         // TODO add your handling code here:
-        if(rad_guest.isSelected()){
+        if (rad_guest.isSelected()) {
             panel_menber.setVisible(false);
-             jPanel_vip.setVisible(false);
-            
+            jPanel_vip.setVisible(false);
             discount.setVisible(false);
             total_jf.setVisible(false);
             total_lable2.setVisible(false);
@@ -721,13 +698,13 @@ public class GUI extends javax.swing.JFrame {
 
     private void tb2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb2MouseClicked
         // TODO add your handling code here:
-          DefaultTableModel model = (DefaultTableModel) tb2.getModel();
-         index = tb2.convertRowIndexToModel(tb2.getSelectedRow());
-         
-         getID_tb2 = model.getValueAt(index, 0).toString();
-         getName_tb2=model.getValueAt(index, 1).toString();
-         price = Integer.parseInt(model.getValueAt(index, 2).toString());
-         System.out.println(getID_tb2+": "+getName_tb2+":"+price);
+        DefaultTableModel model = (DefaultTableModel) tb2.getModel();
+        index = tb2.convertRowIndexToModel(tb2.getSelectedRow());
+
+        getID_tb2 = model.getValueAt(index, 0).toString();
+        getName_tb2 = model.getValueAt(index, 1).toString();
+        price = Integer.parseInt(model.getValueAt(index, 2).toString());
+        System.out.println(getID_tb2 + ": " + getName_tb2 + ":" + price);
     }//GEN-LAST:event_tb2MouseClicked
 
     private void btn_add_sellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_sellActionPerformed
@@ -741,51 +718,56 @@ public class GUI extends javax.swing.JFrame {
         TableRowSorter<DefaultTableModel> rowSorter;
         rowSorter = new TableRowSorter<DefaultTableModel>(model);
         tb2.setRowSorter(rowSorter);
-        
+
         rowSorter.setRowFilter(RowFilter.regexFilter(search_book.getText().toString()));
     }//GEN-LAST:event_search_bookKeyTyped
-        DefaultListModel<String> model_list =  new DefaultListModel<>();
-        DefaultListModel<String>  model_list_gia =  new DefaultListModel();
-        DefaultListModel<String>  model_list_id =  new DefaultListModel();
+    DefaultListModel<String> model_list = new DefaultListModel<>();
+    DefaultListModel<String> model_list_gia = new DefaultListModel();
+    DefaultListModel<String> model_list_id = new DefaultListModel();
     private void btn_add_sellMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_add_sellMouseClicked
         // TODO add your handling code here:
-        if(getID_tb2==null){
+        if (getID_tb2 == null) {
             System.out.println("chua chon");
-        }else{
-        model_list_gia.addElement(String.valueOf(price));
-        model_list.addElement(getName_tb2);
-        model_list_id.addElement(getID_tb2);
-        sell_list_book.setModel(model_list);
-        sell_gia_list.setModel(model_list_gia);
-        id_sell_list.setModel(model_list_id);
-        
-        Total=Total+price;
-        total_lable.setText(""+Total);
+        } else {
+            model_list_gia.addElement(String.valueOf(price));
+            model_list.addElement(getName_tb2);
+            model_list_id.addElement(getID_tb2);
+            sell_list_book.setModel(model_list);
+            sell_gia_list.setModel(model_list_gia);
+            id_sell_list.setModel(model_list_id);
+
+            Total = Total + price;
+            total_lable.setText("" + Total);
+            float a = (float) Total * 70 / 100;
+            //  a= 5*5;
+            total_lable2.setText(a + " VND");
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_btn_add_sellMouseClicked
 
     private void del_allMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_del_allMouseClicked
         // TODO add your handling code here:
-        if(Total==0){
-            
-        }else{
-        DefaultListModel model_list1 = (DefaultListModel) sell_list_book.getModel();
-        DefaultListModel  model_list_gia1 =  (DefaultListModel) sell_gia_list.getModel();
-        DefaultListModel  model_list_id1 =  (DefaultListModel) id_sell_list.getModel();
-        model_list1.removeAllElements();
-        model_list_gia1.removeAllElements();
-        model_list_id1.removeAllElements();
-        Total=0;
-        total_lable.setText(""+Total);
+        if (Total == 0) {
+
+        } else {
+            DefaultListModel model_list1 = (DefaultListModel) sell_list_book.getModel();
+            DefaultListModel model_list_gia1 = (DefaultListModel) sell_gia_list.getModel();
+            DefaultListModel model_list_id1 = (DefaultListModel) id_sell_list.getModel();
+            model_list1.removeAllElements();
+            model_list_gia1.removeAllElements();
+            model_list_id1.removeAllElements();
+            Total = 0;
+            total_lable.setText("" + Total);
+            float a = (float) Total * 70 / 100;
+            //  a= 5*5;
+            total_lable2.setText(a + " VND");
         }
     }//GEN-LAST:event_del_allMouseClicked
 
     private void sell_list_bookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sell_list_bookMouseClicked
         // TODO add your handling code here:
-        int i=sell_list_book.getSelectedIndex();
+        int i = sell_list_book.getSelectedIndex();
         System.out.println(i);
         sell_gia_list.setSelectedIndex(i);
         id_sell_list.setSelectedIndex(i);
@@ -793,40 +775,43 @@ public class GUI extends javax.swing.JFrame {
 
     private void btn_del_sellMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_del_sellMouseClicked
         // TODO add your handling code here:
-        if(sell_gia_list.getSelectedValue()==null){}
-        else{
-        System.out.println(sell_gia_list.getSelectedValue());
-        Total=Total-Integer.parseInt( sell_gia_list.getSelectedValue());
-        DefaultListModel model_list1 = (DefaultListModel) sell_list_book.getModel();
-        DefaultListModel  model_list_gia1 =  (DefaultListModel) sell_gia_list.getModel();
-        DefaultListModel  model_list_id1 =  (DefaultListModel) id_sell_list.getModel();
-        
-        int index_list=sell_list_book.getSelectedIndex();
-       total_lable.setText(""+Total);
-        model_list_id1.remove(index_list);
-        model_list1.remove(index_list);
-        model_list_gia1.remove(index_list);
+        if (sell_gia_list.getSelectedValue() == null) {
+        } else {
+            System.out.println(sell_gia_list.getSelectedValue());
+            Total = Total - Integer.parseInt(sell_gia_list.getSelectedValue());
+            DefaultListModel model_list1 = (DefaultListModel) sell_list_book.getModel();
+            DefaultListModel model_list_gia1 = (DefaultListModel) sell_gia_list.getModel();
+            DefaultListModel model_list_id1 = (DefaultListModel) id_sell_list.getModel();
+
+            int index_list = sell_list_book.getSelectedIndex();
+            total_lable.setText("" + Total);
+            model_list_id1.remove(index_list);
+            model_list1.remove(index_list);
+            model_list_gia1.remove(index_list);
+            float a = (float) Total * 70 / 100;
+            //  a= 5*5;
+            total_lable2.setText(a + " VND");
         }
     }//GEN-LAST:event_btn_del_sellMouseClicked
 
     private void SELLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SELLMouseClicked
         // TODO add your handling code here:
-        try{
-            DefaultListModel  model_list_id1 =  (DefaultListModel) id_sell_list.getModel();
-        
-        for(int i=0; i<model_list_id1.getSize() ; i++){
-            System.out.println(model_list_id1.getElementAt(i));
-            String id=model_list_id1.getElementAt(i).toString();
-            cn.delBook(id);
+        try {
+            DefaultListModel model_list_id1 = (DefaultListModel) id_sell_list.getModel();
+
+            for (int i = 0; i < model_list_id1.getSize(); i++) {
+                System.out.println(model_list_id1.getElementAt(i));
+                String id = model_list_id1.getElementAt(i).toString();
+                cn.delBook(id);
+            }
+            JOptionPane.showMessageDialog(rootPane, "Complete");
+            new GUI(this.name).setVisible(true);
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Erro");
         }
-        JOptionPane.showMessageDialog(rootPane, "Complete");
-        new GUI(this.name).setVisible(true);
-        dispose();
-        }catch(Exception e){
-             JOptionPane.showMessageDialog(rootPane, "Erro");
-        }
-        
-        
+
+
     }//GEN-LAST:event_SELLMouseClicked
 
     private void btn_readersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_readersMouseClicked
@@ -834,7 +819,8 @@ public class GUI extends javax.swing.JFrame {
         BookClick(false);
         btn_sellClick(false);
         btn_readersClick(true);
-        
+        id_textfield_readers.setText("");
+
     }//GEN-LAST:event_btn_readersMouseClicked
 
     private void address_textfield_readersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_address_textfield_readersActionPerformed
@@ -847,14 +833,14 @@ public class GUI extends javax.swing.JFrame {
 
     private void tb3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb3MouseClicked
         // TODO add your handling code here:
-         DefaultTableModel model = (DefaultTableModel) tb3.getModel();
-         index = tb3.convertRowIndexToModel(tb3.getSelectedRow());
-         getID = model.getValueAt(index, 0).toString();
-         System.out.println(getID);
-         id_textfield_readers.setText(model.getValueAt(index, 0).toString());
-         Name_textfield_readers.setText(model.getValueAt(index, 1).toString());
-         address_textfield_readers.setText(model.getValueAt(index, 2).toString());
-         Phone_textfield_readers.setText(model.getValueAt(index, 3).toString());
+        DefaultTableModel model = (DefaultTableModel) tb3.getModel();
+        index = tb3.convertRowIndexToModel(tb3.getSelectedRow());
+        getID = model.getValueAt(index, 0).toString();
+        System.out.println(getID);
+        id_textfield_readers.setText(model.getValueAt(index, 0).toString());
+        Name_textfield_readers.setText(model.getValueAt(index, 1).toString());
+        address_textfield_readers.setText(model.getValueAt(index, 2).toString());
+        Phone_textfield_readers.setText(model.getValueAt(index, 3).toString());
     }//GEN-LAST:event_tb3MouseClicked
 
     private void search_readersKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_readersKeyTyped
@@ -863,233 +849,212 @@ public class GUI extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tb3.getModel();
         TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(tb3.getModel());
         tb3.setRowSorter(rowSorter);
-        
+
         rowSorter.setRowFilter(RowFilter.regexFilter(search_readers.getText()));
-        
-        
+
+
     }//GEN-LAST:event_search_readersKeyTyped
 
     private void add_readerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_readerMouseClicked
         // TODO add your handling code here:
-        String id,name,address,phone;
+        String id, name, address, phone;
         id = id_textfield_readers.getText().toString();
         name = Name_textfield_readers.getText().toString();
-        address= address_textfield_readers.getText().toString();
-        phone=Phone_textfield_readers.getText().toString();
-        
-        if(id==""&&id==null){
+        address = address_textfield_readers.getText().toString();
+        phone = Phone_textfield_readers.getText().toString();
+        System.out.println("id = "+(id==""));
+        if (id.equals("") ||id == null) {
             notification_readres.setText("Error");
             notification_readres.setForeground(Color.red);
-        }{
-            if(cn.addReaders(id, name, address, phone)==true){
+        }else
+        {
+            if (cn.addReaders(id, name, address, phone) == true) {
                 notification_readres.setForeground(Color.GREEN);
                 notification_readres.setText("complete");
                 refTb3();
-            }else{
+            } else {
                 notification_readres.setText("Error");
-                 notification_readres.setForeground(Color.red);
+                notification_readres.setForeground(Color.red);
             }
         }
     }//GEN-LAST:event_add_readerMouseClicked
 
     private void update_redersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_redersMouseClicked
         // TODO add your handling code here:
-        String id,name,address,phone;
+        String id, name, address, phone;
         id = id_textfield_readers.getText().toString();
         name = Name_textfield_readers.getText().toString();
-        address= address_textfield_readers.getText().toString();
-        phone=Phone_textfield_readers.getText().toString();
-        
-        if(id==""&&id==null){
+        address = address_textfield_readers.getText().toString();
+        phone = Phone_textfield_readers.getText().toString();
+
+        if (id == "" && id == null) {
             notification_readres.setText("Error");
             notification_readres.setForeground(Color.red);
-        }{
-            if(cn.updateReaders(id, name, address, phone)==true){
+        }
+        {
+            if (cn.updateReaders(id, name, address, phone) == true) {
                 notification_readres.setForeground(Color.GREEN);
                 notification_readres.setText("complete");
                 refTb3();
-            }else{
+            } else {
                 notification_readres.setText("Error");
-                 notification_readres.setForeground(Color.red);
+                notification_readres.setForeground(Color.red);
             }
         }
     }//GEN-LAST:event_update_redersMouseClicked
 
     private void del_readersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_del_readersMouseClicked
         // TODO add your handling code here:
-        String id,name,address,phone;
+        String id, name, address, phone;
         id = id_textfield_readers.getText().toString();
         name = Name_textfield_readers.getText().toString();
-        address= address_textfield_readers.getText().toString();
-        phone=Phone_textfield_readers.getText().toString();
-        
-        if(id==""&&id==null){
+        address = address_textfield_readers.getText().toString();
+        phone = Phone_textfield_readers.getText().toString();
+
+        if (id == "" && id == null) {
             notification_readres.setText("Error");
             notification_readres.setForeground(Color.red);
-        }{
-            if(cn.delReaders(id)==true){
+        }
+        {
+            if (cn.delReaders(id) == true) {
                 notification_readres.setForeground(Color.GREEN);
                 notification_readres.setText("complete");
                 refTb3();
-            }else{
+            } else {
                 notification_readres.setText("Error");
-                 notification_readres.setForeground(Color.red);
+                notification_readres.setForeground(Color.red);
             }
         }
     }//GEN-LAST:event_del_readersMouseClicked
 
     private void inputIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIDKeyTyped
         // TODO add your handling code here:
-       
-        
+
     }//GEN-LAST:event_inputIDKeyTyped
 
     private void inputIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIDKeyPressed
         // TODO add your handling code here:
-         String id = inputID.getText();
+        String id = inputID.getText();
         System.out.println(id);
-        String name=cn.getnameReadersexist(id);
-        //System.out.println(cn.getnameReadersexist("B17"));
+        String name = cn.getnameReadersexist(id);
         System.out.println(name);
-        if(!name.equals("xxx")){
-            
+        if (!name.equals("xxx")) {
+
             readers_wellcome.setText(name);
             jPanel_vip.setVisible(true);
             discount.setVisible(true);
             total_jf.setVisible(true);
-            float a = (float) Total * 70 /100;
-          //  a= 5*5;
-            total_lable2.setText(a+" VND");
+            float a = (float) Total * 70 / 100;
+            total_lable2.setText(a + " VND");
             total_lable2.setVisible(true);
-        }else{
+        } else {
             System.out.println("kh thay");
             jPanel_vip.setVisible(false);
-            
+
             discount.setVisible(false);
             total_jf.setVisible(false);
             total_lable2.setVisible(false);
         }
     }//GEN-LAST:event_inputIDKeyPressed
-    public void refTb3(){
-        DefaultTableModel model2 = (DefaultTableModel) tb3.getModel(); 
-        readers[] Readers=cn.getReaders();
-         //   TimeUnit.SECONDS.sleep(1);
-         int rows = model2.getRowCount(); 
-        for(int i = rows - 1; i >=0; i--)
-            {
-              model2.removeRow(i); 
-            }
-            //book[]  = cn.dvsv();
-            int i=0;
-            
-      
-            while(i!=(Readers.length)){
-             //   System.out.println(books[i].getAuthor());
-              //  model.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getAuthor(),books[i].getCategory(),books[i].getPrice(),books[i].getSL()});
-               // model1.addRow(new Object[] {books[i].getID(),books[i].getName(),books[i].getPrice()});
-                model2.addRow(new Object[] {Readers[i].getID(),Readers[i].getName(),Readers[i].getAddress(),Readers[i].getPhone()});
-                i++;
-            }
-    } 
-    public void BookClick(boolean click){
-        if(click == false){
-        //GT.setVisible(true);
-        btn_BOOK.setBackground(new java.awt.Color(51, 102, 255));
-        btn_BOOK.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btn_BOOK.setForeground(new java.awt.Color(255, 255, 255));
-        table_listBook.setVisible(false);
-        btn_BOOK.setBorder(null);
-        btn_BOOK.setBorderPainted(false);
-        btn_BOOK.setContentAreaFilled(false);
-       // btn_BOOK.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btn_BOOK.setDefaultCapable(false);
-        btn_BOOK.setOpaque(false);
-        //GT.setVisible(true);
-        
-        table_listBook.setVisible(false);
-        search.setVisible(false);
-        }else{
-        btn_BOOK.setBackground(Color.white);
-        btn_BOOK.setForeground(Color.BLUE);
-        btn_BOOK.setBorder(BorderFactory.createEmptyBorder());
-        btn_BOOK.setBorderPainted(false);
-        btn_BOOK.setOpaque(true);
-        GT.setVisible(false);
-        search.setVisible(true);
-        //BookClick(false);
-        search.setVisible(true);
-        //search.setVisible(true);
-        table_listBook.setVisible(true);
-        tb1.setVisible(true);
-        //GT.setVisible(false);
-        btn_sellClick(false);
+    public void refTb3() {
+        DefaultTableModel model2 = (DefaultTableModel) tb3.getModel();
+        readers[] Readers = cn.getReaders();
+        int rows = model2.getRowCount();
+        for (int i = rows - 1; i >= 0; i--) {
+            model2.removeRow(i);
+        }
+        int i = 0;
+        while (i != (Readers.length)) {
+            model2.addRow(new Object[]{Readers[i].getID(), Readers[i].getName(), Readers[i].getAddress(), Readers[i].getPhone()});
+            i++;
+        }
+    }
+
+    public void BookClick(boolean click) {
+        if (click == false) {
+            btn_BOOK.setBackground(new java.awt.Color(51, 102, 255));
+            btn_BOOK.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+            btn_BOOK.setForeground(new java.awt.Color(255, 255, 255));
+            table_listBook.setVisible(false);
+            btn_BOOK.setBorder(null);
+            btn_BOOK.setBorderPainted(false);
+            btn_BOOK.setContentAreaFilled(false);
+            btn_BOOK.setDefaultCapable(false);
+            btn_BOOK.setOpaque(false);
+            table_listBook.setVisible(false);
+            search.setVisible(false);
+        } else {
+            btn_BOOK.setBackground(Color.white);
+            btn_BOOK.setForeground(Color.BLUE);
+            btn_BOOK.setBorder(BorderFactory.createEmptyBorder());
+            btn_BOOK.setBorderPainted(false);
+            btn_BOOK.setOpaque(true);
+            GT.setVisible(false);
+            search.setVisible(true);
+            search.setVisible(true);
+            table_listBook.setVisible(true);
+            tb1.setVisible(true);
+            btn_sellClick(false);
             btn_readersClick(false);
         }
     }
-    
-    public void btn_sellClick(boolean click){
-        if(click == false){
-        //GT.setVisible(true);
-        
-        btn_sell.setBackground(new java.awt.Color(51, 102, 255));
-        btn_sell.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btn_sell.setForeground(new java.awt.Color(255, 255, 255));
-        btn_sell.setBorder(null);
-        btn_sell.setBorderPainted(false);
-        btn_sell.setContentAreaFilled(false);
-        btn_sell.setDefaultCapable(false);
-        btn_sell.setOpaque(false);
-        panelSell.setVisible(false);
-        }else{
+
+    public void btn_sellClick(boolean click) {
+        if (click == false) {
+            btn_sell.setBackground(new java.awt.Color(51, 102, 255));
+            btn_sell.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+            btn_sell.setForeground(new java.awt.Color(255, 255, 255));
+            btn_sell.setBorder(null);
+            btn_sell.setBorderPainted(false);
+            btn_sell.setContentAreaFilled(false);
+            btn_sell.setDefaultCapable(false);
+            btn_sell.setOpaque(false);
+            panelSell.setVisible(false);
+        } else {
             jPanel_vip.setVisible(false);
-            
             discount.setVisible(false);
             total_jf.setVisible(false);
             total_lable2.setVisible(false);
-        GT.setVisible(false);
-        panelSell.setVisible(true);
-        //search.setVisible(false);
-        btn_sell.setBackground(Color.white);
-        btn_sell.setForeground(Color.BLUE);
-        btn_sell.setBorder(BorderFactory.createEmptyBorder());
-        btn_sell.setBorderPainted(false);
-        btn_sell.setOpaque(true);
-        //GT.setVisible(false);
-        rad_guest.setSelected(true);
-        panel_menber.setVisible(false);
-        BookClick(false);
-        btn_readersClick(false);
+            GT.setVisible(false);
+            panelSell.setVisible(true);
+            btn_sell.setBackground(Color.white);
+            btn_sell.setForeground(Color.BLUE);
+            btn_sell.setBorder(BorderFactory.createEmptyBorder());
+            btn_sell.setBorderPainted(false);
+            btn_sell.setOpaque(true);
+            rad_guest.setSelected(true);
+            panel_menber.setVisible(false);
+            BookClick(false);
+            btn_readersClick(false);
         }
     }
-     public void btn_readersClick(boolean click){
-        if(click == false){
-        //GT.setVisible(true);
-        
-        btn_readers.setBackground(new java.awt.Color(51, 102, 255));
-        btn_readers.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btn_readers.setForeground(new java.awt.Color(255, 255, 255));
-        btn_readers.setBorder(null);
-        btn_readers.setBorderPainted(false);
-        btn_readers.setContentAreaFilled(false);
-        btn_readers.setDefaultCapable(false);
-        btn_readers.setOpaque(false);
-        readers_pannel.setVisible(false);
-        }else{
-        GT.setVisible(false);
-        //readers_pannel.setVisible(true);
-        search.setVisible(false);
-        btn_readers.setBackground(Color.white);
-        btn_readers.setForeground(Color.BLUE);
-        btn_readers.setBorder(BorderFactory.createEmptyBorder());
-        btn_readers.setBorderPainted(false);
-        btn_readers.setOpaque(true);
-        //GT.setVisible(false);
-       // rad_guest.setSelected(true);
-        readers_pannel.setVisible(true);
-        BookClick(false);
-        btn_sellClick(false);
+
+    public void btn_readersClick(boolean click) {
+        if (click == false) {
+            btn_readers.setBackground(new java.awt.Color(51, 102, 255));
+            btn_readers.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+            btn_readers.setForeground(new java.awt.Color(255, 255, 255));
+            btn_readers.setBorder(null);
+            btn_readers.setBorderPainted(false);
+            btn_readers.setContentAreaFilled(false);
+            btn_readers.setDefaultCapable(false);
+            btn_readers.setOpaque(false);
+            readers_pannel.setVisible(false);
+        } else {
+            GT.setVisible(false);
+            search.setVisible(false);
+            btn_readers.setBackground(Color.white);
+            btn_readers.setForeground(Color.BLUE);
+            btn_readers.setBorder(BorderFactory.createEmptyBorder());
+            btn_readers.setBorderPainted(false);
+            btn_readers.setOpaque(true);
+            readers_pannel.setVisible(true);
+            id_textfield_readers.setText("");
+            BookClick(false);
+            btn_sellClick(false);
         }
     }
+
     /**
      * @param args the command line arguments
      */
@@ -1120,7 +1085,7 @@ public class GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUI("hihi").setVisible(true);  
+                new GUI("hihi").setVisible(true);
             }
         });
     }

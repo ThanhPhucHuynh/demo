@@ -1,6 +1,6 @@
-CREATE DATABASE book_db CHARACTER SET utf8;
-use book_db;
-desc books;
+CREATE DATABASE book_db1 CHARACTER SET utf8;
+use book_db1;
+
 create table category (
     id_category varchar(8) primary key,
     name_category varchar(40)
@@ -31,7 +31,6 @@ create table books (
 
 
 
-
 delimiter $$
 create procedure sp_addcategory(idcategory varchar(8),
 															namecategory varchar(40))
@@ -57,17 +56,6 @@ create procedure sp_readers(		idreaders varchar(8),
 															phone char(10))
 begin
 	insert into readers values(idreaders,namereaders,address,phone	);
-end$$
-delimiter ;
-delimiter $$
-create procedure sp_addborrow(	idbook varchar(8),
-															idreaders varchar(8),
-															date_begin date,
-															date_return date)
-begin
-	DECLARE date_end date; 
-	set date_end = ADDDATE(date_begin,7);
-	insert into borrow values(idbook,idreaders,date_begin,date_end,null);
 end$$
 delimiter ;
 
@@ -152,6 +140,11 @@ begin
 	return SL;
 end$$
 delimiter ;
+
+
+
+
+
 DROP  FUNCTION IF EXISTS getSL;
 
 select getSL("1313");
@@ -188,11 +181,4 @@ select
     *
 from
     readers;
-select id_book,name_book,author_book,id_category,numbers_book,price_book from books;
-
-
-call sp_addbook("221","dung lua chon an nhan khi con tre","thanh phuc","KN",2,40000);
-call sp_addbook("222","dung lua chon an nhan khi con  trinh","Thanh Phuc","KN",3,42000);
-
-
-
+select id_book,name_book,author_book,id_category,numbers_book,price_book from books

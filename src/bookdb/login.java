@@ -16,15 +16,16 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Phuc Huynh
  */
 public class login extends javax.swing.JFrame {
+
     connector cn = new connector();
-     static int i=0;
+    static int i = 0;
+
     /**
      * Creates new form login
      */
     public login() {
         initComponents();
-        
-       
+
     }
 
     /**
@@ -117,12 +118,12 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordActionPerformed
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
-        
+
     }//GEN-LAST:event_btn_loginActionPerformed
 
     private void btn_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_loginMouseClicked
         String acc = account.getText().toString();
-      //  System.out.println(acc);
+        //  System.out.println(acc);
         String pass_sh = cn.checkAdmin(acc, "123");
         char[] pass = password.getPassword();
         password.setText(pass_sh);
@@ -130,8 +131,8 @@ public class login extends javax.swing.JFrame {
         if (Arrays.equals(pass, correctPass)) {
             System.out.println("Password is correct");
             new GUI(acc).setVisible(true);
-            i=1;
-              super.dispose();
+            i = 1;
+            super.dispose();
         } else {
             System.out.println("Incorrect password");
             notification.setVisible(true);
@@ -174,23 +175,21 @@ public class login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
-                    login a = new login();
-                    //while(i==0){
-                    a.setVisible(true);
-                    a.notification.setVisible(false);
-                 //  TimeUnit.SECONDS.sleep(2);
-              //  }
-              if(i==1){
-                  a.setVisible(false);
-              }
-                  //  TimeUnit.SECONDS.sleep(2);
-                   // a.setVisible(false);
-               
-                   
+
+                login a = new login();
+                //while(i==0){
+                a.setVisible(true);
+                a.notification.setVisible(false);
+                //  TimeUnit.SECONDS.sleep(2);
+                //  }
+                if (i == 1) {
+                    a.setVisible(false);
                 }
-               
-            
+                //  TimeUnit.SECONDS.sleep(2);
+                // a.setVisible(false);
+
+            }
+
         });
     }
 
