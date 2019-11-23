@@ -41,7 +41,7 @@
     <Component class="javax.swing.JLabel" name="GT">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/img/Web 1280 &#x2013; 2.jpg"/>
+          <Image iconType="3" name="/img/GT.png"/>
         </Property>
       </Properties>
       <Constraints>

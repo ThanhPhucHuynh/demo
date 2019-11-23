@@ -201,7 +201,7 @@ public class GUI extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1100, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        GT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Web 1280 – 2.jpg"))); // NOI18N
+        GT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/GT.png"))); // NOI18N
         getContentPane().add(GT, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 1030, 800));
 
         btn_readers.setBackground(new java.awt.Color(51, 102, 255));

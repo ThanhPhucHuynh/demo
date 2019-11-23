@@ -5,6 +5,7 @@
  */
 package bookdb;
 
+import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -39,8 +40,8 @@ public class login extends javax.swing.JFrame {
 
         account = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
-        btn_login = new javax.swing.JButton();
         notification = new javax.swing.JLabel();
+        btn_login = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -70,7 +71,17 @@ public class login extends javax.swing.JFrame {
                 passwordActionPerformed(evt);
             }
         });
+        password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordKeyPressed(evt);
+            }
+        });
         getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 364, 140, 20));
+
+        notification.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+        notification.setForeground(new java.awt.Color(255, 0, 0));
+        notification.setText("Incorrect password or account");
+        getContentPane().add(notification, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, -1, 10));
 
         btn_login.setBackground(new java.awt.Color(51, 153, 255));
         btn_login.setForeground(new java.awt.Color(255, 255, 255));
@@ -87,12 +98,7 @@ public class login extends javax.swing.JFrame {
                 btn_loginActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 70, 30));
-
-        notification.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
-        notification.setForeground(new java.awt.Color(255, 0, 0));
-        notification.setText("Incorrect password or account");
-        getContentPane().add(notification, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, -1, 10));
+        getContentPane().add(btn_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 90, 40));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(300, 500));
@@ -104,7 +110,7 @@ public class login extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/avatar (1).png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Web 1920 – 1.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/login.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 501));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -144,6 +150,31 @@ public class login extends javax.swing.JFrame {
     private void accountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_accountActionPerformed
+
+    private void passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) { 
+             String acc = account.getText().toString();
+        //  System.out.println(acc);
+        String pass_sh = cn.checkAdmin(acc, "123");
+        char[] pass = password.getPassword();
+        password.setText(pass_sh);
+        char[] correctPass = password.getPassword();
+        if (Arrays.equals(pass, correctPass)) {
+            System.out.println("Password is correct");
+            new GUI(acc).setVisible(true);
+            i = 1;
+            super.dispose();
+        } else {
+            System.out.println("Incorrect password");
+            notification.setVisible(true);
+            account.setText("");
+            password.setText("");
+        }
+        
+        }
+        
+    }//GEN-LAST:event_passwordKeyPressed
 
     /**
      * @param args the command line arguments

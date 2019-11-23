@@ -84,34 +84,36 @@ public class Add_book extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1100, 650));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1100, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         notification.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         notification.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(notification, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 580, 200, 20));
+        getContentPane().add(notification, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 510, 200, 20));
 
-        getContentPane().add(typeTL, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 430, 170, 30));
+        getContentPane().add(typeTL, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 350, 170, 30));
 
         id.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         id.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 270, 170, 30));
+        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 170, 30));
 
         price.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         price.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 530, 170, 30));
+        getContentPane().add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 450, 170, 30));
 
         author.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         author.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(author, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 380, 170, 30));
+        getContentPane().add(author, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, 170, 30));
 
         namebook.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         namebook.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(namebook, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 330, 170, 30));
+        getContentPane().add(namebook, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, 170, 30));
 
         sl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         sl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(sl, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 480, 170, 30));
+        getContentPane().add(sl, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 400, 170, 30));
 
         btn_add.setText("ADD");
         btn_add.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -127,7 +129,7 @@ public class Add_book extends javax.swing.JFrame {
                 btn_addActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 620, 90, 50));
+        getContentPane().add(btn_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 540, 90, 50));
 
         btn_exit.setText("Exit");
         btn_exit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -135,13 +137,15 @@ public class Add_book extends javax.swing.JFrame {
                 btn_exitMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 620, 90, 50));
+        getContentPane().add(btn_exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 540, 90, 50));
 
+        jPanel1.setBackground(new java.awt.Color(242, 242, 242));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 240, 210, 350));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, 210, 350));
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add_form.jpg"))); // NOI18N
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add_form_final.png"))); // NOI18N
+        background.setPreferredSize(new java.awt.Dimension(1200, 800));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 1100, 730));
 
         pack();
         setLocationRelativeTo(null);

@@ -173,8 +173,8 @@ call sp_addbook("113","tuoi tre dang gia bao nhieu","thanh phuc","KN",2,50000);
 call sp_addbook("124","The liitle Prince","thanh phuc","TN",2,80000);
 
 insert into admin value("9a3","B1706515","123456789","Dong Thap","0347766101");
-
-
+insert into admin value("9a3","B1706515","123456789","Dong Thap","0347766101");
+insert into admin value("Lov","B1792804","28041999","Dong Thap","0347766101");
 
 select 
     *
